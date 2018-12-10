@@ -13,6 +13,8 @@ gem 'puma', '~> 3.11'
 # gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
+
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -25,8 +27,20 @@ gem 'puma', '~> 3.11'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+
+#************************************#
+# GEMS NEEDED FOR FUNCTIONALITY
+#************************************#
+
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-# gem 'rack-cors'
+gem 'rack-cors'
+
+# Allows to generate clean JSON responses for our objects
+gem 'active_model_serializers'
+
+#************************************#
+# END OF SECTION
+#************************************#
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
