@@ -40,6 +40,9 @@ gem 'active_model_serializers'
 
 gem 'google-api-client'
 
+# Behavior-driven development framework
+gem 'rspec'
+
 #************************************#
 # END OF SECTION
 #************************************#
