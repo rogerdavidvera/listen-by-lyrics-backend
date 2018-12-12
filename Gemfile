@@ -38,6 +38,8 @@ gem 'rack-cors'
 # Allows to generate clean JSON responses for our objects
 gem 'active_model_serializers'
 
+gem 'google-api-client'
+
 #************************************#
 # END OF SECTION
 #************************************#
