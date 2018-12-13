@@ -3,6 +3,11 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.3.3'
 
+#************************************#
+# Shim to load environment variables from .env into ENV in development
+gem 'dotenv-rails', groups: [:development, :test]
+#************************************#
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.2'
 # Use postgresql as the database for Active Record
@@ -39,6 +44,9 @@ gem 'rack-cors'
 gem 'active_model_serializers'
 
 gem 'google-api-client'
+
+# Behavior-driven development framework
+gem 'rspec-rails'
 
 #************************************#
 # END OF SECTION
