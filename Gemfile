@@ -48,6 +48,9 @@ gem 'google-api-client'
 # Behavior-driven development framework
 gem 'rspec-rails'
 
+# A Ruby wrapper for the Spotify Web API
+gem 'rspotify'
+
 #************************************#
 # END OF SECTION
 #************************************#

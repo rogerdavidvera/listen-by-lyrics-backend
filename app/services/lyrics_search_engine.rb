@@ -53,13 +53,21 @@ class LyricsSearchEngine
 
   # Returns a formatted song hash
   def format_search_result(result)
-    {
-      :artist => result.pagemap["breadcrumb"][2]["title"],
-      :song => parse_song_name_for_GENIUS(result.pagemap["breadcrumb"][3]["title"]),
-      :snippet => result.snippet,
-      :lyrics_url => result.pagemap["metatags"][0]["og:url"],
-      :album_art => result.pagemap["metatags"][0]["og:image"]
-    }
+    artist = result.pagemap["breadcrumb"][2]["title"]
+    song = parse_song_name_for_GENIUS(result.pagemap["breadcrumb"][3]["title"])
+    spotify_result = SpotifyAPI.instance.search(artist, song)
+    if spotify_result != nil
+      {
+        :artist => artist,
+        :song => song,
+        :track_id => spotify_result[:track_id],
+        :snippet => result.snippet,
+        :lyrics_url => result.pagemap["metatags"][0]["og:url"],
+        :album_art => result.pagemap["metatags"][0]["og:image"]
+      }
+    else
+      nil
+    end
   end
 
   # Returns true if result from GENIUS is a song link
