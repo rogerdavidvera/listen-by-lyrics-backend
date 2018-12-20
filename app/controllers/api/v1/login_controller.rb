@@ -3,7 +3,7 @@ class Api::V1::LoginController < ApplicationController
   def login
     # User has clicked "login" button
     # Assemble GET request to Spotify to ask
-    # User authorize our application
+    # User to authorize the application
     query_params = {
       client_id: ENV['SPOTIFY_CLIENT_ID'],
       response_type: "code",
