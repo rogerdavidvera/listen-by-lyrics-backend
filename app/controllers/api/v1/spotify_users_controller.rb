@@ -14,7 +14,6 @@ class Api::V1::SpotifyUsersController < ApplicationController
         client_id: ENV['SPOTIFY_CLIENT_ID'],
         client_secret: ENV['SPOTIFY_CLIENT_SECRET']
       }
-
       auth_response = RestClient.post('https://accounts.spotify.com/api/token', body)
       # convert response.body to json for assisgnment
       auth_params = JSON.parse(auth_response.body)
