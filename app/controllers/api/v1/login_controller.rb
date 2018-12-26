@@ -1,7 +1,7 @@
 class Api::V1::LoginController < ApplicationController
 
   skip_before_action :authorized, only: [:login]
-  
+
   def login
     # User has clicked "login" button
     # Assemble GET request to Spotify to ask
@@ -17,6 +17,16 @@ class Api::V1::LoginController < ApplicationController
     # redirects user's browser to Spotify's authorization page, which details
     # scopes my app is requesting
     redirect_to "#{url}?#{query_params.to_query}"
+  end
+
+  def show
+    # If application_controller#authorized is successful,
+    render json: {
+      # Return JSON data for that current_user
+      spotify_id: current_user.spotify_id,
+      url: current_user.url,
+      img_url: current_user.profile_image
+      }
   end
 
 
