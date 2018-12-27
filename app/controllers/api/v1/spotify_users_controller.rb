@@ -46,6 +46,7 @@ class Api::V1::SpotifyUsersController < ApplicationController
       token = issue_token(payload)
       render json: {jwt: token, user: {
         spotify_id: @spotify_user.spotify_id,
+        display_name: @spotify_user.display_name,
         url: @spotify_user.url,
         img_url: @spotify_user.profile_image
         }}

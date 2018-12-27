@@ -24,6 +24,7 @@ class Api::V1::LoginController < ApplicationController
     render json: {
       # Return JSON data for that current_user
       spotify_id: current_user.spotify_id,
+      display_name: current_user.display_name,
       url: current_user.url,
       img_url: current_user.profile_image
       }
