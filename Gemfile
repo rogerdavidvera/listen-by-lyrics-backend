@@ -51,6 +51,9 @@ gem 'rspec-rails'
 # A Ruby wrapper for the Spotify Web API
 gem 'rspotify'
 
+# JSON Web Token Gem
+gem 'jwt'
+
 #************************************#
 # END OF SECTION
 #************************************#
