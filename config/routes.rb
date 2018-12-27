@@ -3,8 +3,9 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       post '/search', action: :search, controller: 'lyrics_search_engine'
+      post '/spotifyusers', action: :create, controller: 'spotify_users'
       get '/login', action: :login, controller: 'login'
-      get '/spotifyusers', action: :create, controller: 'spotify_users'
+      get '/auth', action: :show, controller: 'login'
     end
   end
 end
