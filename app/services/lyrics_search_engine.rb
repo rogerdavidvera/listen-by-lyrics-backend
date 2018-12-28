@@ -58,12 +58,13 @@ class LyricsSearchEngine
     spotify_result = SpotifyAPI.instance.search(artist, song)
     if spotify_result != nil
       {
-        :artist => artist,
-        :song => song,
         :track_id => spotify_result[:track_id],
+        :song => spotify_result[:song],
+        :artist => artist,
+        :album => spotify_result[:album],
+        :album_art => spotify_result[:album_art],
         :snippet => result.snippet,
-        :lyrics_url => result.pagemap["metatags"][0]["og:url"],
-        :album_art => result.pagemap["metatags"][0]["og:image"]
+        :lyrics_url => result.pagemap["metatags"][0]["og:url"]
       }
     else
       nil
