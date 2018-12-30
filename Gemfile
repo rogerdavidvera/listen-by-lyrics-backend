@@ -54,6 +54,9 @@ gem 'rspotify'
 # JSON Web Token Gem
 gem 'jwt'
 
+# Song Lyrics for your Ruby apps.
+gem 'lyricfy'
+
 #************************************#
 # END OF SECTION
 #************************************#
