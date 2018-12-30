@@ -54,8 +54,8 @@ gem 'rspotify'
 # JSON Web Token Gem
 gem 'jwt'
 
-# Song Lyrics for your Ruby apps.
-gem 'lyricfy'
+# Parse HTML and XML in Ruby
+gem 'nokogiri'
 
 #************************************#
 # END OF SECTION

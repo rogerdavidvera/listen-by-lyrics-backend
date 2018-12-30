@@ -5,8 +5,11 @@ require 'json'
 class Api::V1::PlaybackController < ApplicationController
   def play
     track_id = params[:track_uri]
+    url = params[:lyrics_url]
     # current_user.refresh_access_token
     send_play_post_request(track_id)
+    lyrics = LyricsParser.instance.get_lyrics(url)
+    render :json => {:lyrics => lyrics}
   end
 
   private
