@@ -9,7 +9,7 @@ class Api::V1::PlaybackController < ApplicationController
     # current_user.refresh_access_token
     send_play_post_request(track_id)
     lyrics = LyricsParser.instance.get_lyrics(url)
-    render :json => {:lyrics => lyrics}
+    render :json => lyrics
   end
 
   private
