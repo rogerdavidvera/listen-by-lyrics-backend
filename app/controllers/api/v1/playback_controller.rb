@@ -19,6 +19,7 @@ class Api::V1::PlaybackController < ApplicationController
     request = Net::HTTP::Put.new(uri)
     request.content_type = 'application/json'
     request["Accept"] = "application/json"
+    # current_user.refresh_access_token
     request["Authorization"] = "Bearer #{current_user.access_token}"
     request.body = JSON.dump({"uris" => ["spotify:track:#{track_id}"]})
     req_options = {use_ssl: uri.scheme == "https"}
