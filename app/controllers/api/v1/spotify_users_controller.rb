@@ -1,5 +1,5 @@
 class Api::V1::SpotifyUsersController < ApplicationController
-  skip_before_action :authorized
+  skip_before_action :authorized, only: [:create]
 
   def create
     # Handle response from Spotify
