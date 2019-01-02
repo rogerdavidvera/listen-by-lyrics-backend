@@ -56,6 +56,9 @@ class LyricsSearchEngine
 
   # Returns a formatted song hash
   def format_search_result(result)
+    if result.pagemap["breadcrumb"] == nil
+      return nil
+    end
     artists = result.pagemap["breadcrumb"][2]["title"]
     search_friendly_artists = format_artists_names(result.pagemap["breadcrumb"][2]["title"])
     song = parse_song_name_for_GENIUS(result.pagemap["breadcrumb"][3]["title"])
