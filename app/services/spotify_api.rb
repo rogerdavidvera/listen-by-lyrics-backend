@@ -11,24 +11,24 @@ class SpotifyAPI
   # Returns a hash to be rendered as JSON
   def search(song, artist)
     RSpotify.authenticate(ENV['SPOTIFY_CLIENT_ID'], ENV['SPOTIFY_CLIENT_SECRET'])
-    track_results = RSpotify::Track.search("#{song} #{artist}")
-    format_search_results(track_results).first
+    result = RSpotify::Track.search("#{song} #{artist}", limit: 1, market: 'US').first
+    if !!result
+      format_result(result)
+    else
+      nil
+    end
   end
 
 
   private
 
-  def format_search_results(track_results)
-    track_results.map do |result|
-      format_result(result)
-    end
-  end
-
   def format_result(result)
     {
       :artists => get_artists_names(result.artists),
       :song => result.name,
-      :track_id => result.id
+      :track_id => result.id,
+      :album => result.album.name,
+      :album_art => result.album.images.first['url']
     }
   end
 
@@ -38,8 +38,5 @@ class SpotifyAPI
     end
   end
 
-  def artist_query_in_artists_array
-
-  end
 
 end

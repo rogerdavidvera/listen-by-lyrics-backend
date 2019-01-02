@@ -54,6 +54,9 @@ gem 'rspotify'
 # JSON Web Token Gem
 gem 'jwt'
 
+# Parse HTML and XML in Ruby
+gem 'nokogiri'
+
 #************************************#
 # END OF SECTION
 #************************************#

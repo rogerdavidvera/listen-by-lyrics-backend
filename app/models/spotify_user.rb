@@ -6,6 +6,7 @@ class SpotifyUser < ApplicationRecord
     (Time.now - self.updated_at) > 3300
   end
 
+  # TODO: Use HTTP/NET to see if that solves 400 error
   def refresh_access_token
     # Check if user's access token has expired
     if access_token_expired?
