@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       post '/spotifyusers', action: :create, controller: 'spotify_users'
       get '/login', action: :login, controller: 'login'
       get '/auth', action: :show, controller: 'login'
+      post '/play', action: :play, controller: 'playback'
     end
   end
 end

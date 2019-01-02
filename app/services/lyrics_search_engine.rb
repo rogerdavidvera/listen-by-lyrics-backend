@@ -53,14 +53,15 @@ class LyricsSearchEngine
 
   # Returns a formatted song hash
   def format_search_result(result)
-    artist = result.pagemap["breadcrumb"][2]["title"]
+    artists = result.pagemap["breadcrumb"][2]["title"]
+    search_friendly_artists = format_artists_names(result.pagemap["breadcrumb"][2]["title"])
     song = parse_song_name_for_GENIUS(result.pagemap["breadcrumb"][3]["title"])
-    spotify_result = SpotifyAPI.instance.search(artist, song)
+    spotify_result = SpotifyAPI.instance.search(search_friendly_artists, song)
     if spotify_result != nil
       {
         :track_id => spotify_result[:track_id],
         :song => spotify_result[:song],
-        :artist => artist,
+        :artist => artists,
         :album => spotify_result[:album],
         :album_art => spotify_result[:album_art],
         :snippet => result.snippet,
@@ -78,6 +79,16 @@ class LyricsSearchEngine
 
   def parse_song_name_for_GENIUS(raw_song_info)
     raw_song_info.split(" Lyrics").first
+  end
+
+  def format_artists_names(artists)
+    split_names = artists.split(/&|,/)
+    if split_names.size == 1
+      split_names.join('')
+    else
+      without_whitespace = artists.split(/&|,/).map {|artist| artist.strip}
+      formatted_string = without_whitespace.join(' ')
+    end
   end
 
 end
