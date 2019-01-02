@@ -1,5 +1,6 @@
 class SpotifyUser < ApplicationRecord
   validates :spotify_id, uniqueness: true, presence: true
+  has_many :tracks
 
   def access_token_expired?
     #return true if access_token is older than 55 minutes, based on update_at
