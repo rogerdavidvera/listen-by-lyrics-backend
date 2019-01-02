@@ -44,6 +44,9 @@ class LyricsSearchEngine
 
   # Returns a an array of formatted song hashes
   def format_search_results_from_API(search_results)
+    if search_results.items == nil
+      return []
+    end
     search_results.items.map do |result|
       if isSong?(result)
         format_search_result(result)
