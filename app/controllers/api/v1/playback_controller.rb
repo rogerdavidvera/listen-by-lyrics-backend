@@ -8,8 +8,13 @@ class Api::V1::PlaybackController < ApplicationController
     url = params[:lyrics_url]
     # current_user.refresh_access_token
     send_play_post_request(track_id)
-    lyrics = LyricsParser.instance.get_lyrics(url)
-    render :json => lyrics
+    track = Track.find_by(spotify_track_id: track_id)
+    if track
+      render :json => {:lyrics => track.lyrics}
+    else
+      lyrics = LyricsParser.instance.get_lyrics(url)
+      render :json => lyrics
+    end
   end
 
   private
