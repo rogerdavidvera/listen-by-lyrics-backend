@@ -32,7 +32,7 @@ class Track < ApplicationRecord
       :artist => self.artist,
       :album => self.album,
       :album_art => self.album_art,
-      :lyrics => self.lyrics
+      :lyrics => JSON.parse(self.lyrics)
     }
   end
 end
