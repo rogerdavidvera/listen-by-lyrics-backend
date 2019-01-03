@@ -24,4 +24,15 @@ class Track < ApplicationRecord
       return true
     end
   end
+
+  def to_json_object
+    {
+      :track_id => self.spotify_track_id,
+      :song => self.name,
+      :artist => self.artist,
+      :album => self.album,
+      :album_art => self.album_art,
+      :lyrics => self.lyrics
+    }
+  end
 end

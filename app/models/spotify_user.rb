@@ -28,6 +28,24 @@ class SpotifyUser < ApplicationRecord
     end
   end
 
+  def get_playlist_tracks
+    getUrl = "https://api.spotify.com/v1/playlists/#{self.playlist_id}"
+    getHeader = {
+      Authorization: "Bearer #{self.access_token}"
+    }
+    begin
+      response = RestClient.get(getUrl, getHeader)
+      response_body = JSON.parse(response.body)
+      playlist_tracks = response_body['tracks']['items']
+      user_track_ids = playlist_tracks.map {|playlist_track| playlist_track['track']['id']}
+      users_tracks = Track.all.select {|server_track| user_track_ids.include? server_track.spotify_track_id}
+      json_tracks = users_tracks.map {|track| track.to_json_object}
+      return json_tracks
+    rescue => e
+      return e
+    end
+  end
+
   def find_or_create_playlist
     getUrl = "https://api.spotify.com/v1/playlists/#{self.playlist_id}"
     getHeader = {

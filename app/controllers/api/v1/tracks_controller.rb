@@ -16,6 +16,12 @@ class Api::V1::TracksController < ApplicationController
     render :json => {}
   end
 
+  def get_tracks
+    tracks = current_user.get_playlist_tracks
+    byebug
+    render :json => {data: tracks}
+  end
+
   private
   def track_params
     params.require(:track).permit(:name, :artist, :album, :album_art, :spotify_track_id)
