@@ -1,6 +1,6 @@
 class SpotifyUser < ApplicationRecord
   validates :spotify_id, uniqueness: true, presence: true
-  has_many :tracks
+  # has_many :tracks
 
   def access_token_expired?
     #return true if access_token is older than 55 minutes, based on update_at
@@ -25,6 +25,30 @@ class SpotifyUser < ApplicationRecord
       self.update(access_token: auth_params["access_token"])
     else
       puts "Current user's access token has not expired"
+    end
+  end
+
+  def find_or_create_playlist
+    getUrl = "https://api.spotify.com/v1/playlists/#{self.playlist_id}"
+    getHeader = {
+      Authorization: "Bearer #{self.access_token}"
+    }
+    begin
+      RestClient.get(getUrl, getHeader)
+      self.playlist_id
+    rescue => e
+      # Playlist not found
+      # Create a new playlist
+      postUrl = "https://api.spotify.com/v1/users/#{self.spotify_id}/playlists"
+      postHeader = {
+        Authorization: "Bearer #{self.access_token}",
+        "Content-Type": 'application/json'
+      }
+      payload = "{\"name\":\"ListenByLyrics Songs\", \"public\":false}"
+      response = RestClient.post(postUrl, payload, postHeader)
+      playlist_object = JSON.parse(response.body)
+      self.update(playlist_id: playlist_object["id"])
+      self.playlist_id
     end
   end
 
