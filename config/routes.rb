@@ -7,6 +7,8 @@ Rails.application.routes.draw do
       get '/login', action: :login, controller: 'login'
       get '/auth', action: :show, controller: 'login'
       post '/play', action: :play, controller: 'playback'
+      post '/save', action: :save, controller: 'tracks'
+      get '/songs', action: :get_tracks, controller: 'tracks'
     end
   end
 end
