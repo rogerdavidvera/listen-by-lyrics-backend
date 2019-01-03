@@ -18,7 +18,6 @@ class Api::V1::TracksController < ApplicationController
 
   def get_tracks
     tracks = current_user.get_playlist_tracks
-    byebug
     render :json => {data: tracks}
   end
 
