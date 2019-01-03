@@ -10,7 +10,7 @@ class Api::V1::PlaybackController < ApplicationController
     send_play_post_request(track_id)
     track = Track.find_by(spotify_track_id: track_id)
     if track
-      render :json => {:lyrics => track.lyrics}
+      render :json => {:lyrics => JSON.parse(track.lyrics)}
     else
       lyrics = LyricsParser.instance.get_lyrics(url)
       render :json => lyrics
