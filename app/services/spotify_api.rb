@@ -9,9 +9,13 @@ class SpotifyAPI
   end
 
   # Returns a hash to be rendered as JSON
-  def search(song, artist)
+  def search(artist, song)
     RSpotify.authenticate(ENV['SPOTIFY_CLIENT_ID'], ENV['SPOTIFY_CLIENT_SECRET'])
     result = RSpotify::Track.search("#{song} #{artist}", limit: 1, market: 'US').first
+    # byebug
+    if (!!result) && (result.name.downcase.include? 'remix') && (!song.downcase.include? 'remix')
+      result = RSpotify::Track.search("#{song} #{artist}", limit: 2, market: 'US').second
+    end
     if !!result
       format_result(result)
     else
