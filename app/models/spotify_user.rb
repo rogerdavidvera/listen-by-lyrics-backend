@@ -39,7 +39,8 @@ class SpotifyUser < ApplicationRecord
       playlist_tracks = response_body['tracks']['items']
       user_track_ids = playlist_tracks.map {|playlist_track| playlist_track['track']['id']}
       users_tracks = Track.all.select {|server_track| user_track_ids.include? server_track.spotify_track_id}
-      byebug
+      json_tracks = users_tracks.map {|track| track.to_json_object}
+      return json_tracks
     rescue => e
       return e
     end
