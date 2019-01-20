@@ -3,7 +3,7 @@ class Api::V1::LoginController < ApplicationController
   skip_before_action :authorized, only: [:login]
 
   def login
-    # User has clicked "Log in" button from the front end homepage
+    # User has clicked "Log in" button from the front end landing page
     # Assemble GET request url parameters to send to Spotify
     #  which will then ask user to authorize the application
     query_params = {
