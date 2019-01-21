@@ -48,7 +48,7 @@ class Api::V1::SpotifyUsersController < ApplicationController
       payload = {user_id: @spotify_user.id}
       # Issue a JWT token containing encoded user ID
       token = issue_token(payload)
-      # Sent JSON data to front end
+      # Send JSON data to front end
       render json: {
         jwt: token, # Used to save to local storage, as it is securely encoded
         # User information can be sent to update application state
