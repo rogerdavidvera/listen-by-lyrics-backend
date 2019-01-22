@@ -44,7 +44,8 @@ class Api::V1::SpotifyUsersController < ApplicationController
         access_token: auth_params["access_token"],
         refresh_token:  auth_params["refresh_token"]
       )
-      # Create payload containing user's unique spotify ID
+      # Create payload containing user's unique ID
+      # Note this is the user's key in backend database, NOT spotify ID
       payload = {user_id: @spotify_user.id}
       # Issue a JWT token containing encoded user ID
       token = issue_token(payload)
