@@ -57,7 +57,8 @@ class LyricsSearchEngine
         :album => spotify_result[:album],
         :album_art => spotify_result[:album_art],
         :snippet => result.snippet,
-        :lyrics_url => result.pagemap["metatags"][0]["og:url"]
+        :lyrics_url => result.pagemap["metatags"][0]["og:url"],
+        :lyrics => LyricsParser.instance.get_lyrics(result.pagemap["metatags"][0]["og:url"])
       }
     else
       nil
