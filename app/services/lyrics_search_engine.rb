@@ -22,20 +22,6 @@ class LyricsSearchEngine
     search_results = @search_engine.list_cse_siterestricts(query, {cx: @custom_search_engine_id})
     # Initialize format for results hash to be returned
     results = {:search_term => query, :songs => []}
-    # searchResults.items.map do |result|
-    #   # If result is a valid GENIUS url to a song lyric:
-    #   if result.pagemap["metatags"][0]["og:type"] == "music.song"
-    #     # Using appropriate keys returned in Google's Search Object response,
-    #     # you can format a song object to be used to be returned as JSON
-    #     song = {}
-    #     song[:artist] = result.pagemap["breadcrumb"][2]["title"]
-    #     song[:song] = parse_song_name_for_GENIUS(result.pagemap["breadcrumb"][3]["title"])
-    #     song[:snippet] = result.snippet
-    #     song[:lyrics_url] = result.pagemap["metatags"][0]["og:url"]
-    #     song[:album_art] = result.pagemap["metatags"][0]["og:image"]
-    #     results[:songs] << song
-    #   end
-    # end
     results[:songs] = format_search_results_from_API(search_results)
     return results
   end
@@ -71,7 +57,8 @@ class LyricsSearchEngine
         :album => spotify_result[:album],
         :album_art => spotify_result[:album_art],
         :snippet => result.snippet,
-        :lyrics_url => result.pagemap["metatags"][0]["og:url"]
+        :lyrics_url => result.pagemap["metatags"][0]["og:url"],
+        :lyrics => LyricsParser.instance.get_lyrics(result.pagemap["metatags"][0]["og:url"])
       }
     else
       nil
