@@ -31,6 +31,7 @@ class Api::V1::PlaybackController < ApplicationController
     response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
       http.request(request)
     end
+    # byebug
   end
 
 end
