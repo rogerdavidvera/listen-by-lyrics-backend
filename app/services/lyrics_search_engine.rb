@@ -19,7 +19,7 @@ class LyricsSearchEngine
   # Returns a hash to be rendered as JSON
   def search(query)
     # A search object returned from API call
-    search_results = @search_engine.list_cse_siterestricts("#{query}", {cx: @custom_search_engine_id})
+    search_results = @search_engine.list_cse_siterestricts(query, {cx: @custom_search_engine_id})
     # Initialize format for results hash to be returned
     results = {:search_term => query, :songs => []}
     results[:songs] = format_search_results_from_API(search_results)
