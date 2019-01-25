@@ -10,7 +10,7 @@ class Api::V1::LoginController < ApplicationController
       client_id: ENV['SPOTIFY_CLIENT_ID'],
       response_type: "code",
       redirect_uri: ENV['REDIRECT_URI'],
-      scope: 'streaming user-library-modify user-read-currently-playing playlist-modify-private user-modify-playback-state',
+      scope: 'streaming playlist-modify-private user-modify-playback-state',
       show_dialog: true
     }
     url = "https://accounts.spotify.com/authorize/"
