@@ -7,7 +7,7 @@ class LyricsSearchEngine
 
   def initialize()
     # Load environment variables using Dotenv gem
-    Dotenv.load('.env')
+    # Dotenv.load('.env')
     # Instantiate single instance of API Client
     @search_engine = Google::Apis::CustomsearchV1::CustomsearchService.new
     # Assign API key
