@@ -1,5 +1,3 @@
-# require 'RSpotify'
-
 class SpotifyAPI
   include Singleton
 
